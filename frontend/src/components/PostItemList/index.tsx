@@ -28,7 +28,7 @@ export default function PostItemList() {
             && Array.isArray(initialPosts) 
             && initialPosts.length > 0 
             && initialPosts.map((post) => (
-              <PostItem post={post}/>
+              <PostItem key={post.id} post={post}/>
             )
           )}
     </div>
