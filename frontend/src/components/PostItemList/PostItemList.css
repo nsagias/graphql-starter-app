@@ -2,3 +2,9 @@
   max-width: 500px;
   margin: 70px auto 0 auto;
 }
+
+.feed {
+  background-color: #bbb;
+  padding: 3px;
+  margin-top: 20px;
+}
