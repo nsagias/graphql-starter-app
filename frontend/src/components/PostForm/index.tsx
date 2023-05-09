@@ -3,7 +3,7 @@ import PostFormTextArea from "../PostFormTextArea";
 import { Post } from "../PostItem/PostItem";
 
 
-export default function PostForm() {
+export default function PostForm({ onPosts, onSetPosts }: { onPosts: Post[], onSetPosts: () => void}): JSX.Element {
   const [postContent, setPostContent] = useState<Post>();
   const handleSubmitPost = (e: any) => {
   //   e.preventDefault();
@@ -19,8 +19,7 @@ export default function PostForm() {
   // setPosts([newPost, ...posts]);
 
   // setPostContent("");
-    null
-
+   
   };
 
   return(
