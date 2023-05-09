@@ -1,5 +1,8 @@
+import { PostFormTextAreaProps } from "./PostFormTextArea";
 
-export default function PostFormTextArea({}) {
+export default function PostFormTextArea({ onPostContent, onSetPostContent, placeholder}: 
+  PostFormTextAreaProps
+): JSX.Element {
 
   const formTextAreaStyles = {
     width: "calc(100% - 20px)",
@@ -9,7 +12,12 @@ export default function PostFormTextArea({}) {
 
   return (
     <>
-      <textarea style={formTextAreaStyles} value={""} placeholder="Create New Post!!" />
+      <textarea 
+        style={formTextAreaStyles} 
+        value={onPostContent}
+        onChange={() => onSetPostContent}
+        placeholder={placeholder}
+      />
     </>
   );
 }
