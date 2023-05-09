@@ -2,12 +2,6 @@ form {
   padding-bottom: 20px;
 }
 
-form textarea {
-  width: calc(100% - 20px);
-  padding: 10px;
-  border-color: #bbb;
-}
-
 form [type=submit] {
   border: none;
   background-color: #6ca6fd;

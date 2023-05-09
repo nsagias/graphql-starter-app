@@ -1,17 +1,15 @@
 import { useState } from "react";
+import PostFormTextArea from "../PostFormTextArea";
+
 
 export default function PostForm() {
   const [postContent, setPostContent] = useState();
-
-  const handleSubmitPost = (e: any) => {}
+  const handleSubmitPost = (e: any) => {};
 
   return(
     <div className="form">
       <form onSubmit={handleSubmitPost}>
-        <textarea 
-          value={postContent}
-          placeholder="Create New Post!"
-        />
+        <PostFormTextArea />
         <input type="submit" value="Submit"/>
       </form>
     </div>
