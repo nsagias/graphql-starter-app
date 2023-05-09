@@ -23,7 +23,6 @@ export default function PostItemList() {
   const [posts, setPost] = useState<Post[]>(initialPosts);
 
   return (
-    <div className="container">
        <div className="feed">
           { initialPosts 
             && Array.isArray(initialPosts) 
@@ -32,7 +31,6 @@ export default function PostItemList() {
               <PostItem post={post}/>
             )
           )}
-       </div>
     </div>
   );
 }

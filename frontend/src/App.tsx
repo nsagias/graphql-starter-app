@@ -1,11 +1,10 @@
 import "./App.css";
-import PostItemList from "./components/PostItemList";
+import PostsContainer from "./components/PostsContainer";
 
 function App() {
   return (
     <div className="App">
-      <PostItemList />
-
+      <PostsContainer />
     </div>
   );
 }
