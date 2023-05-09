@@ -1,7 +1,16 @@
-import "./Post.css";
+import "./PostItem.css";
+import { Post } from "./PostItem";
 
-export default function PostItem() {
+export default function PostItem({ post }: { post: Post }) {
   return (
-    <h1>Post Component</h1>
+    <div key={post.id} className="post">
+      <div className="header">
+        <img src={post.avatar} />
+        <h2>{post.username}</h2>
+      </div>
+      <p className="content">
+        {post.text}
+      </p>
+    </div>
   );
 }

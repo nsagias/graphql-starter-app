@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Post } from "../PostItem/PostItem";
 import "./PostItemList.css";
+import PostItem from "../PostItem";
 
 
 const initialPosts: Post[] = [
@@ -24,17 +25,13 @@ export default function PostItemList() {
   return (
     <div className="container">
        <div className="feed">
-          { initialPosts && Array.isArray(initialPosts) && initialPosts.length > 0 && initialPosts.map((post) => (
-            <div  key={post.id} className="post">
-              <div className="header">
-                <img src={post.avatar} />
-                <h2>{post.username}</h2>
-              </div>
-              <p className="content">
-                {post.text}
-              </p>
-            </div>
-          ))}
+          { initialPosts 
+            && Array.isArray(initialPosts) 
+            && initialPosts.length > 0 
+            && initialPosts.map((post) => (
+              <PostItem post={post}/>
+            )
+          )}
        </div>
     </div>
   );
