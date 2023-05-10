@@ -1,7 +1,8 @@
 import "./PostItem.css";
-import { Post } from "./PostItem";
+import { PostItemProps } from "./PostItem";
 
-export default function PostItem({ post }: { post: Post }) {
+
+export default function PostItem({ post }: PostItemProps ): JSX.Element {
   return (
     <div key={post.id} className="post">
       <div className="header">
