@@ -1,10 +1,10 @@
 import { useState } from "react";
 import PostFormTextArea from "../PostFormTextArea";
 import { Post } from "../PostItem/PostItem";
+import { PostFormProps } from "./PostForm";
 
 
-
-export default function PostForm({ onPosts, onSetPosts }: { onPosts: Post[], onSetPosts: (posts: Post[]) => void }): JSX.Element {
+export default function PostForm({ onPosts, onSetPosts }: PostFormProps ): JSX.Element {
 
   const [postContent, setPostContent] = useState<string>("");
 
