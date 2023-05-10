@@ -3,23 +3,23 @@ import PostFormTextArea from "../PostFormTextArea";
 import { Post } from "../PostItem/PostItem";
 
 
-export default function PostForm({ onPosts, onSetPosts }: { onPosts: Post[], onSetPosts: () => void}): JSX.Element {
-  const [postContent, setPostContent] = useState<Post>();
+
+export default function PostForm({ onPosts, onSetPosts }: { onPosts: Post[], onSetPosts: (posts: Post[]) => void }): JSX.Element {
+
+  const [postContent, setPostContent] = useState<string>("");
+
   const handleSubmitPost = (e: any) => {
-  //   e.preventDefault();
-  //   const newPost = {
-  //     id: posts.length + 1,
-  //     text: postContent,
-  //     user: {
-  //         avatar: '/uploads/avatar1.png',
-  //         username: 'Fake User'
-  //     }
-  // };
+    e.preventDefault();
 
-  // setPosts([newPost, ...posts]);
+    const newPost: Post = {
+      id: onPosts.length + 1,
+      text: postContent,
+      avatar: "/uploads/avatar1.png",
+      username: "New User",
+    };
 
-  // setPostContent("");
-   
+    onSetPosts([newPost, ...onPosts]);
+    setPostContent("");
   };
 
   return(
