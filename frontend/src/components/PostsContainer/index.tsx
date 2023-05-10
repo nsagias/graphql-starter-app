@@ -26,7 +26,7 @@ export default function PostsContainer() {
     <div className="container">
       <PostForm 
         onPosts={posts}
-        onSetPosts={() => setPosts}
+        onSetPosts={(posts: Post[]) => setPosts(posts)}
       />
       <PostItemList 
         onPosts={posts}

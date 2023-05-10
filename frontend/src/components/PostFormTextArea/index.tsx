@@ -15,7 +15,7 @@ export default function PostFormTextArea({ onPostContent, onSetPostContent, plac
       <textarea 
         style={formTextAreaStyles} 
         value={onPostContent}
-        onChange={() => onSetPostContent}
+        onChange={(e) => onSetPostContent(e)}
         placeholder={placeholder}
       />
     </>
