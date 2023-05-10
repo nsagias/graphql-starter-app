@@ -5,6 +5,7 @@ import cors from "cors";
 import compress from "compression";
 
 const app = express();
+app.use(compress());
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   directives: {
@@ -16,6 +17,8 @@ app.use(helmet.contentSecurityPolicy({
 }));
 
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+
+app.use(cors());
 
 const root = path.join(__dirname, "../../");
 
