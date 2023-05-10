@@ -1,8 +1,9 @@
 import "./PostItemList.css";
 import PostItem from "../PostItem";
-import { Post } from "../PostItem/PostItem";
+import { PostsItemListProps } from "./PostsItemList";
 
-export default function PostItemList({ onPosts}:{ onPosts: Post[] }): JSX.Element {
+
+export default function PostItemList({ onPosts}: PostsItemListProps ): JSX.Element {
 
   return (
        <div className="feed">
