@@ -16,38 +16,6 @@ interface MyContext {
   token?: string;
 }
 
-// const typeDefs = `
-//   type Book {
-//     title: String
-//     author: String
-//   }
-//   type Query {
-//     books: [Book]
-//   }
-// `;
-
-
-
-// const books = [
-//   {
-//     title: 'The Awakening',
-//     author: 'Kate Chopin',
-//   },
-//   {
-//     title: 'City of Glass',
-//     author: 'Paul Auster',
-//   },
-// ];
-
-
-
-
-// const resolvers = {
-//   Query: {
-//     books: () => books,
-//   },
-// };
-
 const root = path.join(__dirname, "../../");
 
 const app = express();
