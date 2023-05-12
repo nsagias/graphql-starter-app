@@ -1,11 +1,51 @@
-const typeDefs = `
-  type Book {
-    title: String
-    author: String
+// const typeDefs = `
+//   type Book {
+//     title: String
+//     author: String
+//   }
+//   type Query {
+//     books: [Book]
+//   }
+// `;
+
+// export default [typeDefs];
+
+const typeDefinitions = `
+  type Post {
+    id: Int
+    text: String
+    user: User
   }
-  type Query {
-    books: [Book]
+
+  type User {
+    avatar: String
+    username: String
+  }
+
+  type RootQuery {
+    posts: [Post]
+  }
+
+  input PostInput {
+    text: String!
+  }
+
+  input UserInput {
+    username: String!
+    avatar: String!
+  }
+
+  type RootMutation {
+    addPost (
+      post: PostInput!
+      user: UserInput!
+    ): Post
+  }
+
+  schema {
+    query: RootQuery
+    mutation: RootMutation
   }
 `;
 
-export default [typeDefs];
+export default [typeDefinitions];

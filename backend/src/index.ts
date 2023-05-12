@@ -9,13 +9,44 @@ import bodyParser from 'body-parser';
 import helmet from "helmet";
 import compress from "compression";
 import path from "path";
-import typeDefs from "./services/schema";
 import resolvers from "./services/resolvers";
-
+import typeDefs from "./services/schema"
 
 interface MyContext {
   token?: string;
 }
+
+// const typeDefs = `
+//   type Book {
+//     title: String
+//     author: String
+//   }
+//   type Query {
+//     books: [Book]
+//   }
+// `;
+
+
+
+// const books = [
+//   {
+//     title: 'The Awakening',
+//     author: 'Kate Chopin',
+//   },
+//   {
+//     title: 'City of Glass',
+//     author: 'Paul Auster',
+//   },
+// ];
+
+
+
+
+// const resolvers = {
+//   Query: {
+//     books: () => books,
+//   },
+// };
 
 const root = path.join(__dirname, "../../");
 
