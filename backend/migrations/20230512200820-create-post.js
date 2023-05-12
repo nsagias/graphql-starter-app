@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ftext: {
+      text: {
         type: Sequelize.TEXT
       },
       createdAt: {
