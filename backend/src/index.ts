@@ -1,11 +1,74 @@
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
-import path from 'path';
-import helmet from "helmet";
+import http from "http";
 import cors from "cors";
+import bodyParser from 'body-parser';
+import helmet from "helmet";
 import compress from "compression";
+import path from "path";
 
+
+interface MyContext {
+  token?: string;
+}
+
+const typeDefs = `
+  type Book {
+    title: String
+    author: String
+  }
+  type Query {
+    books: [Book]
+  }
+`;
+
+const books = [
+  {
+    title: 'The Awakening',
+    author: 'Kate Chopin',
+  },
+  {
+    title: 'City of Glass',
+    author: 'Paul Auster',
+  },
+];
+
+const resolvers = {
+  Query: {
+    books: () => books,
+  },
+};
+
+const root = path.join(__dirname, "../../");
 const app = express();
 app.use(compress());
+app.use(cors());
+
+const httpServer = http.createServer(app);
+
+const startServer = async () => {
+const server = new ApolloServer<MyContext>({
+  schema: makeExecutableSchema({
+    typeDefs,
+    resolvers,
+  }),
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+});
+
+await server.start();
+
+app.use(
+  "/graphql",
+    cors<cors.CorsRequest>(),
+    bodyParser.json(),
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+  }),
+);
+
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   directives: {
@@ -15,19 +78,18 @@ app.use(helmet.contentSecurityPolicy({
     imgSrc: ["'self'", "data:", "*.amazonaws.com"]
   }
 }));
-
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 
-app.use(cors());
-
-const root = path.join(__dirname, "../../");
-
 app.use("/", express.static(path.join(root, "/frontend/build")));
-app.use('/uploads', express.static(path.join(root, 'uploads')));
+app.use("/uploads", express.static(path.join(root, "uploads")));
 
-
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(root, "frontend/build/index.html"));
 });
 
-app.listen(8000, () => console.log("Listening on port 8000"));
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: 8000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:8000/`);
+}
+
+startServer();
