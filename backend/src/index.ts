@@ -11,18 +11,16 @@ import compress from "compression";
 import path from "path";
 import resolvers from "./services/resolvers";
 import typeDefs from "./services/schema"
+const root = path.join(__dirname, "../../");
 
 interface MyContext {
   token?: string;
 }
 
-const root = path.join(__dirname, "../../");
-
+// Initialize App
 const app = express();
-
 app.use(compress());
 app.use(cors());
-
 const httpServer = http.createServer(app);
 
 // Async Start of Server
