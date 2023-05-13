@@ -1,58 +1,26 @@
-// const books = [
-//   {
-//     title: 'The Awakening',
-//     author: 'Kate Chopin',
-//   },
-//   {
-//     title: 'City of Glass',
-//     author: 'Paul Auster',
-//   },
-// ];
-
-// const resolvers = {
-//   Query: {
-//     books: () => books,
-//   },
-// };
-
-
 // import logger from '../../helpers/logger';
 
-let posts = [
-    {
-        id: 2,
-        text: 'Lorem ipsum',
-        user: {
-            avatar: '/uploads/avatar1.png',
-            username: 'Test User'
-        }
-    },
-    {
-        id: 1,
-        text: 'Lorem ipsum',
-        user: {
-            avatar: '/uploads/avatar2.png',
-            username: 'Test User 2'
-        }
-    }
-];
+
+import Post from "../../models";
 
 const resolvers = {
     RootQuery: {
-        posts(root: any, args: any, context: any) {
-            return posts;
+        async posts(root: any, args: any, context: any) {
+          const posts = await Post.sequelize.findAll({
+            order: [["createdAt", "DESC"]]
+          });
+          console.log("posts", posts);
+          return posts;
         },
     },
     RootMutation: {
-        addPost(root: any, { post, user }: any, context: any) {
-            const postObject = {
-                ...post,
-                user,
-                id: posts.length + 1,
-            };
-            posts.push(postObject);
-            // logger.log({ level: 'info', message: 'Post was created' });
-            return postObject;
+        // async addPost(root: any, { post, user }: any, context: any) {
+        async addPost(root: any, { post }: any, context: any) {
+        
+          // logger.log({ level: 'info', message: 'Post was created' });
+          const newPostObject = await Post.sequelize.create({ text: post.text });
+          return newPostObject;
+          
         },
     },
 };

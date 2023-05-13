@@ -11,6 +11,11 @@ import compress from "compression";
 import path from "path";
 import resolvers from "./services/resolvers";
 import typeDefs from "./services/schema"
+import db from "./database";
+
+const utils = {
+  db,
+};
 const root = path.join(__dirname, "../../");
 
 interface MyContext {
