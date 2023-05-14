@@ -40,7 +40,12 @@ const typeDefinitions = `
   type Post {
     id: Int
     text: String
-    userId: String
+    user: User
+  }
+
+  type User {
+    avatar: String
+    username: String
   }
 
   type RootQuery {
@@ -49,6 +54,11 @@ const typeDefinitions = `
 
   input PostInput {
     text: String!
+  }
+
+  input UserInput {
+    username: String!
+    avatar: String!
   }
 
   type RootMutation {
@@ -62,5 +72,8 @@ const typeDefinitions = `
     mutation: RootMutation
   }
 `;
+
+
+
 
 export default [typeDefinitions];
