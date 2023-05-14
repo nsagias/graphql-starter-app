@@ -28,12 +28,9 @@ export function initModels(sequelize: Sequelize) {
     as: 'posts',
     foreignKey: 'user_id'
   })
-  User.belongsToMany(UserChat, {
+  User.hasMany(UserChat, {
     as: 'userChats',
-    through: 'user_chats',
-    foreignKey: 'user_id',
-    otherKey: 'user_chat_id',
-    onDelete: 'CASCADE'
+    foreignKey: 'user_id'
   })
   Chat.belongsToMany(User, {
     as: 'users',

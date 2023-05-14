@@ -1,15 +1,5 @@
 import {
   Association,
-  BelongsToManyGetAssociationsMixin,
-  BelongsToManySetAssociationsMixin,
-  BelongsToManyAddAssociationMixin,
-  BelongsToManyAddAssociationsMixin,
-  BelongsToManyCreateAssociationMixin,
-  BelongsToManyRemoveAssociationMixin,
-  BelongsToManyRemoveAssociationsMixin,
-  BelongsToManyHasAssociationMixin,
-  BelongsToManyHasAssociationsMixin,
-  BelongsToManyCountAssociationsMixin,
   CreationOptional,
   DataTypes,
   HasManyGetAssociationsMixin,
@@ -58,18 +48,18 @@ export class User extends Model<
   declare hasPosts: HasManyHasAssociationsMixin<Post, number>
   declare countPosts: HasManyCountAssociationsMixin
   
-  // User belongsToMany UserChat
+  // User hasMany UserChat
   declare userChats?: NonAttribute<UserChat[]>
-  declare getUserChats: BelongsToManyGetAssociationsMixin<UserChat>
-  declare setUserChats: BelongsToManySetAssociationsMixin<UserChat, number>
-  declare addUserChat: BelongsToManyAddAssociationMixin<UserChat, number>
-  declare addUserChats: BelongsToManyAddAssociationsMixin<UserChat, number>
-  declare createUserChat: BelongsToManyCreateAssociationMixin<UserChat>
-  declare removeUserChat: BelongsToManyRemoveAssociationMixin<UserChat, number>
-  declare removeUserChats: BelongsToManyRemoveAssociationsMixin<UserChat, number>
-  declare hasUserChat: BelongsToManyHasAssociationMixin<UserChat, number>
-  declare hasUserChats: BelongsToManyHasAssociationsMixin<UserChat, number>
-  declare countUserChats: BelongsToManyCountAssociationsMixin
+  declare getUserChats: HasManyGetAssociationsMixin<UserChat>
+  declare setUserChats: HasManySetAssociationsMixin<UserChat, number>
+  declare addUserChat: HasManyAddAssociationMixin<UserChat, number>
+  declare addUserChats: HasManyAddAssociationsMixin<UserChat, number>
+  declare createUserChat: HasManyCreateAssociationMixin<UserChat, 'userId'>
+  declare removeUserChat: HasManyRemoveAssociationMixin<UserChat, number>
+  declare removeUserChats: HasManyRemoveAssociationsMixin<UserChat, number>
+  declare hasUserChat: HasManyHasAssociationMixin<UserChat, number>
+  declare hasUserChats: HasManyHasAssociationsMixin<UserChat, number>
+  declare countUserChats: HasManyCountAssociationsMixin
   
   declare static associations: {
     posts: Association<User, Post>,
