@@ -14,7 +14,7 @@ import typeDefs from "./services/schema"
 import db from "./database";
 import { initModels } from "../models";
 
-const root = path.join(__dirname, "../../");
+const root = path.join(__dirname, "../../../");
 
 interface MyContext {
   token?: string;
@@ -71,7 +71,7 @@ const startServer = async () => {
   app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 
   // React Server Side Rendering Section
-  app.use("/", express.static(path.join(root, "/frontend/build")));
+  app.use("/", express.static(path.join(root, "../graphql-starter-app/frontend/build")));
   app.use("/uploads", express.static(path.join(root, "uploads")));
   app.get("/", (req, res) => {
     res.sendFile(path.join(root, "frontend/build/index.html"));
