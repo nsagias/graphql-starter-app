@@ -1,12 +1,12 @@
 // import logger from '../../helpers/logger';
 
+import { Post } from "../../models";
 
-import Post from "../../models";
 
 const resolvers = {
     RootQuery: {
         async posts(root: any, args: any, context: any) {
-          const posts = await Post.sequelize.findAll({
+          const posts = await Post.findAll({
             order: [["createdAt", "DESC"]]
           });
           console.log("posts", posts);
@@ -18,7 +18,7 @@ const resolvers = {
         async addPost(root: any, { post }: any, context: any) {
         
           // logger.log({ level: 'info', message: 'Post was created' });
-          const newPostObject = await Post.sequelize.create({ text: post.text });
+          const newPostObject = await Post.create({ text: post.text });
           return newPostObject;
           
         },
