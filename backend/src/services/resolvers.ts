@@ -7,6 +7,7 @@ const resolvers = {
     Post: {
       async user(post: { getUser: () => any; }, args: any, context: any ) {
         try {
+          if (!post) throw new Error("Missing post data");
           return post.getUser();
           } catch (error) {
             console.log(error);
@@ -19,7 +20,6 @@ const resolvers = {
             const posts = await Post.findAll({
               order: [["createdAt", "DESC"]]
             });
-            console.log("posts", posts);
             return posts;
           } catch (error) {
             console.log(error);
@@ -30,6 +30,7 @@ const resolvers = {
         // async addPost(root: any, { post, user }: any, context: any) {
         async addPost(root: any, { post }: any, context: any) {
           try {
+            if (!post) throw new Error("Missing new post data");
             // Get all users
             const users = await User.findAll();
             // manually assign user from userlist // dev
