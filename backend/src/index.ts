@@ -15,9 +15,6 @@ import db from "./database";
 import { initModels } from "../models";
 
 const root = path.join(__dirname, "../../");
-const root2 = path.join(__dirname, "../../frontend/build/index.html");
-console.log("ROOT", root)
-console.log("ROOT2", root2)
 
 interface MyContext {
   token?: string;
@@ -62,19 +59,19 @@ const startServer = async () => {
   );
 
   // Helmet Section
-  // app.use(helmet());
-  // app.use(helmet.contentSecurityPolicy({
-  //   directives: {
-  //     defaultSrc: ["'self "],
-  //     scriptSrc: ["'self'", "'unsafe-inline'"],
-  //     styleSrc: ["'self'", "'unsafe-inline'"],
-  //     imgSrc: ["'self'", "data:", "*.amazonaws.com"]
-  //   }
-  // }));
-  // app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+  app.use(helmet());
+  app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self "],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "*.amazonaws.com"]
+    }
+  }));
+  app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 
   // React Server Side Rendering Section
-  app.use("/", express.static(path.join(root, "/frontend/build/")));
+  app.use("/", express.static(path.join(root, "/frontend/build")));
   app.use("/uploads", express.static(path.join(root, "uploads")));
   app.get("/", (req, res) => {
     res.sendFile(path.join(root, "frontend/build/index.html"));
