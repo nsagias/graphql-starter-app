@@ -34,9 +34,9 @@ const resolvers = {
             const users = await User.findAll();
             // manually assign user from userlist // dev
             const usersRow = users[0];
-            
+
             const newPost = await Post.create({ ...post });
-            newPost.setUser(usersRow.id);
+            await newPost.setUser(usersRow.id);
             // logger.log({ level: 'info', message: 'Post was created' });
             return newPost;
             } catch (error) {
