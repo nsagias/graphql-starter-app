@@ -14,9 +14,7 @@
     "db:migrate": "sequelize db:migrate",
     "db:rollback": "sequelize db:migrate:undo",
     "db:rollback:all": "sequelize db:migrate:undo:all",
-    "build": "tsc",
-    "start2": "node ./dist/server.js",
-    "dev2": "tsc-watch --onSuccess \"node ./dist/server.js\""
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
