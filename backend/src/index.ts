@@ -12,6 +12,8 @@ import path from "path";
 import resolvers from "./services/resolvers";
 import typeDefs from "./services/schema"
 import db from "./database";
+import { initModels } from "../models";
+
 
 const utils = {
   db,
@@ -30,6 +32,12 @@ const httpServer = http.createServer(app);
 
 // Async Start of Server
 const startServer = async () => {
+
+  initModels(db);
+  await db.sync();
+  // await User.sync({ alter: true });
+  // await UrlModel.sync({ alter: true });
+  // await Token.sync({ alter: true });
   
   // Create Apollo Servier
   const server = await new ApolloServer<MyContext>({
@@ -41,6 +49,8 @@ const startServer = async () => {
   });
 
   await server.start();
+ 
+
 
   //  Apollo endpoint
   app.use(
