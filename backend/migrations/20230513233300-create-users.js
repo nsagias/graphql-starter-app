@@ -34,6 +34,10 @@ module.exports = {
       updatedAt: {
         type: DataTypes.DATE,
         field: 'updated_at'
+      },
+      chatId: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        field: 'chat_id'
       }
     })
   },

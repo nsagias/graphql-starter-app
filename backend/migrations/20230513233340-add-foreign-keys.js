@@ -12,6 +12,16 @@ module.exports = {
       }
     })
     
+    await queryInterface.addConstraint('users', {
+      fields: ['chat_id'],
+      type: 'foreign key',
+      name: 'users_chat_id_fkey',
+      references: {
+        table: 'chats',
+        field: 'id'
+      }
+    })
+    
     await queryInterface.addConstraint('user_chats', {
       fields: ['user_id'],
       type: 'foreign key',
@@ -54,6 +64,7 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeConstraint('posts', 'posts_user_id_fkey')
+    await queryInterface.removeConstraint('users', 'users_chat_id_fkey')
     await queryInterface.removeConstraint('user_chats', 'user_chats_user_id_fkey')
     await queryInterface.removeConstraint('user_chats', 'user_chats_chat_id_fkey')
     await queryInterface.removeConstraint('messages', 'messages_user_id_fkey')

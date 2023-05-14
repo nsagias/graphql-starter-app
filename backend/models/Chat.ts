@@ -1,15 +1,5 @@
 import {
   Association,
-  BelongsToManyGetAssociationsMixin,
-  BelongsToManySetAssociationsMixin,
-  BelongsToManyAddAssociationMixin,
-  BelongsToManyAddAssociationsMixin,
-  BelongsToManyCreateAssociationMixin,
-  BelongsToManyRemoveAssociationMixin,
-  BelongsToManyRemoveAssociationsMixin,
-  BelongsToManyHasAssociationMixin,
-  BelongsToManyHasAssociationsMixin,
-  BelongsToManyCountAssociationsMixin,
   CreationOptional,
   DataTypes,
   HasManyGetAssociationsMixin,
@@ -44,18 +34,18 @@ export class Chat extends Model<
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
 
-  // Chat belongsToMany User
+  // Chat hasMany User
   declare users?: NonAttribute<User[]>
-  declare getUsers: BelongsToManyGetAssociationsMixin<User>
-  declare setUsers: BelongsToManySetAssociationsMixin<User, number>
-  declare addUser: BelongsToManyAddAssociationMixin<User, number>
-  declare addUsers: BelongsToManyAddAssociationsMixin<User, number>
-  declare createUser: BelongsToManyCreateAssociationMixin<User>
-  declare removeUser: BelongsToManyRemoveAssociationMixin<User, number>
-  declare removeUsers: BelongsToManyRemoveAssociationsMixin<User, number>
-  declare hasUser: BelongsToManyHasAssociationMixin<User, number>
-  declare hasUsers: BelongsToManyHasAssociationsMixin<User, number>
-  declare countUsers: BelongsToManyCountAssociationsMixin
+  declare getUsers: HasManyGetAssociationsMixin<User>
+  declare setUsers: HasManySetAssociationsMixin<User, number>
+  declare addUser: HasManyAddAssociationMixin<User, number>
+  declare addUsers: HasManyAddAssociationsMixin<User, number>
+  declare createUser: HasManyCreateAssociationMixin<User>
+  declare removeUser: HasManyRemoveAssociationMixin<User, number>
+  declare removeUsers: HasManyRemoveAssociationsMixin<User, number>
+  declare hasUser: HasManyHasAssociationMixin<User, number>
+  declare hasUsers: HasManyHasAssociationsMixin<User, number>
+  declare countUsers: HasManyCountAssociationsMixin
   
   // Chat hasMany Message
   declare messages?: NonAttribute<Message[]>
