@@ -40,6 +40,7 @@ const typeDefinitions = `
   type Post {
     id: Int
     text: String
+    userId: String
   }
 
   type RootQuery {
