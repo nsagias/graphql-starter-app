@@ -30,23 +30,40 @@ const GET_POSTS = gql(/* GraphQL */`{
 
 export default function PostForm({ onPosts, onSetPosts }: PostFormProps ): JSX.Element {
   const [postContent, setPostContent] = useState<string>("");
-  // const [addPost] = useMutation(ADD_POST, {
-  //   refetchQueries: [{query: GET_POSTS}]
-  // });
-
   const [addPost] = useMutation(ADD_POST, {
-    update(cache, { data: { addPost } }) {
-      const data: Posts | null = cache.readQuery({ query: GET_POSTS });
-      if ( data && data.length) {
-        const newData = { posts: [addPost, ...data.posts]};
-        cache.writeQuery({ query: GET_POSTS, data: newData });
-      }
-    }
+    refetchQueries: [{query: GET_POSTS}]
   });
+
+  // const [addPost] = useMutation(ADD_POST, {
+  //   update(cache, { data: { addPost } }) {
+  //     const data: Posts | null = cache.readQuery({ query: GET_POSTS });
+  //     if ( data && data.length) {
+  //       const newData = { posts: [addPost, ...data.posts]};
+  //       cache.writeQuery({ query: GET_POSTS, data: newData });
+  //     }
+  //   }
+  // });
 
   const handleSubmitPost = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    addPost({ variables: { post: { text: postContent }}})
+    
+    addPost({ variables: { post: { text: postContent }}});
+    // addPost({ variables: { post: { text: postContent },
+    //   optimisticResponse: {
+    //     addPost: {
+    //       __typename: "Post",
+    //       text: postContent,
+    //       id: -1, 
+    //       user: {
+    //         __typeName: "User",
+    //         username: "Loading...",
+    //         avatar: "/public/loading.gif"
+    //       }
+    //     }
+    //   }
+    // }});
+
+
     setPostContent("");
   };
 

@@ -73,10 +73,6 @@ const GET_POSTS = gql(/* GraphQL */`{
 }`);
 
 export default function PostsContainer() {
-  
-
-  
-
   const { loading, error, data } = useQuery(GET_POSTS);
   const [addPost] = useMutation(ADD_POST);
  
