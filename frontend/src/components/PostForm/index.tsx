@@ -2,6 +2,7 @@ import { useState } from "react";
 import PostFormTextArea from "../PostFormTextArea";
 import { PostFormProps } from "./PostForm";
 import { gql, useMutation } from "@apollo/client";
+import { Post, Posts } from "../PostItem/PostItem";
 
 const ADD_POST = gql(/* GraphQL */`
   mutation  addPost($post: PostInput!) {
@@ -29,13 +30,22 @@ const GET_POSTS = gql(/* GraphQL */`{
 
 export default function PostForm({ onPosts, onSetPosts }: PostFormProps ): JSX.Element {
   const [postContent, setPostContent] = useState<string>("");
+  // const [addPost] = useMutation(ADD_POST, {
+  //   refetchQueries: [{query: GET_POSTS}]
+  // });
+
   const [addPost] = useMutation(ADD_POST, {
-    refetchQueries: [{query: GET_POSTS}]
+    update(cache, { data: { addPost } }) {
+      const data: Posts | null = cache.readQuery({ query: GET_POSTS });
+      if ( data && data.length) {
+        const newData = { posts: [addPost, ...data.posts]};
+        cache.writeQuery({ query: GET_POSTS, data: newData });
+      }
+    }
   });
 
-  const handleSubmitPost = (e: any) => {
+  const handleSubmitPost = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    // onSetPosts([newPost, ...onPosts]);
     addPost({ variables: { post: { text: postContent }}})
     setPostContent("");
   };
