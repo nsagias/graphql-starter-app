@@ -15,7 +15,7 @@ const resolvers = {
       }
     },
     RootQuery: {
-        async posts(root: any, args: any, context: any) {
+        async posts(root: any, args: null, context: any) {
           try {
             const posts = await Post.findAll({
               order: [["createdAt", "DESC"]]
