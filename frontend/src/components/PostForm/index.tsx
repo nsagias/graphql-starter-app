@@ -11,14 +11,9 @@ export default function PostForm({ onPosts, onSetPosts }: PostFormProps ): JSX.E
   const handleSubmitPost = (e: any) => {
     e.preventDefault();
 
-    const newPost: Post = {
-      id: onPosts.length + 1,
-      text: postContent,
-      avatar: "/uploads/avatar1.png",
-      username: "New User",
-    };
+   
 
-    onSetPosts([newPost, ...onPosts]);
+    // onSetPosts([newPost, ...onPosts]);
     setPostContent("");
   };
 

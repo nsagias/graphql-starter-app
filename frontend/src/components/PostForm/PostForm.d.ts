@@ -1,4 +1,4 @@
 export type PostFormProps = {
-  onPosts: Post[], 
-  onSetPosts: (posts: Post[]) => void,
+  onPosts: Post[] | undefined, 
+  onSetPosts: (posts: Post[]) => void | undefined,
 };

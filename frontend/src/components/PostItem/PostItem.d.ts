@@ -6,5 +6,5 @@ export type Post = {
 };
 
 export type PostItemProps = {
-  post: Post
+  post?: Post | undefined
 };

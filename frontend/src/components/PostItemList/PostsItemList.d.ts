@@ -1,3 +1,3 @@
 export type PostsItemListProps = {
-  onPosts: Post[] 
+  onPosts: Post[] | undefined;
 };

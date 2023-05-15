@@ -11,7 +11,7 @@ export default function PostItemList({ onPosts}: PostsItemListProps ): JSX.Eleme
             && Array.isArray(onPosts) 
             && onPosts.length > 0 
             && onPosts.map((post) => (
-              <PostItem key={post.id} post={post}/>
+              <PostItem key={post && post.id} post={post &&post}/>
             )
           )}
     </div>
