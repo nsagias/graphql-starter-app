@@ -19,7 +19,4 @@ const postTypeDefinitions = `
   }
 `;
 
-
-
-
 export default postTypeDefinitions;
