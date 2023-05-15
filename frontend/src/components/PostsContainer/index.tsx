@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import PostForm from "../PostForm";
 import { Post } from "../PostItem/PostItem";
@@ -6,21 +6,26 @@ import PostItemList from "../PostItemList";
 import { gql, useQuery} from "@apollo/client";
 import "./PostsContainer.css";
 
-// const initialPosts: Post[] = [
-//   {
-//     id: 1,
-//     text: "Lorem ipsum",
-//     avatar: "/uploads/avatar1.png",
-//     username: "Test User 1"
-//   },
-//   {
-//     id: 2,
-//     text: "Lorem ipsum",
-//     avatar: "/uploads/avatar2.png",
-//     username: "Test User 2"
-//   },
-// ];
+const initialPosts: Post[] = [
+  {
+    id: 1,
+    text: "Lorem ipsum",
+    user: {
+      avatar: "/uploads/avatar1.png",
+      username: "Test User 1"
+    },
+  },
+  {
+    id: 2,
+    text: "Lorem ipsum",
+    user: {
+      avatar: "/uploads/avatar2.png",
+      username: "Test User 2"
+    }
+  },
+];
 export default function PostsContainer() {
+  
   const GET_POSTS = gql`{
     posts {
       id
@@ -33,14 +38,8 @@ export default function PostsContainer() {
   }`;
 
   const { loading, error, data } = useQuery(GET_POSTS);
-  console.log("DATA", data && data.posts);
-  console.log("IS LOADING", loading);
-  console.log("HAS ERROR", error)
-  const [posts, setPosts] = useState<Post[]>(data.posts);
-
-  // const [posts, setPosts] = useState<Post[]>(initialPosts);
-
-
+ 
+  const [posts, setPosts] = useState<Post[]>(data && data.posts);
 
   return (
     <div className="container">
@@ -58,7 +57,7 @@ export default function PostsContainer() {
             onSetPosts={(posts: Post[]) => setPosts(posts)}
           />
           <PostItemList 
-            onPosts={posts}
+            onPosts={data.posts}
           />
         </>
       )}
