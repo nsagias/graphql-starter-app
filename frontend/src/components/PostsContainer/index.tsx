@@ -57,7 +57,7 @@ export default function PostsContainer() {
             onSetPosts={(posts: Post[]) => setPosts(posts)}
           />
           <PostItemList 
-            onPosts={data.posts}
+            onPosts={data && data.posts}
           />
         </>
       )}

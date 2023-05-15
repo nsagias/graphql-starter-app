@@ -29,6 +29,9 @@ const httpServer = http.createServer(app);
 // Async Start of Server
 const startServer = async () => {
 
+  try {
+    
+ 
   initModels(db);
   await db.sync();
   // await User.sync({ alter: true });
@@ -79,6 +82,9 @@ const startServer = async () => {
   // Create server
   await new Promise<void>((resolve) => httpServer.listen({ port: 8000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:8000/`);
+  } catch (error) {
+      console.log("ERROR", error)
+  }
 }
 
 startServer();

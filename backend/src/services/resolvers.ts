@@ -20,6 +20,7 @@ const resolvers = {
             const posts = await Post.findAll({
               order: [["createdAt", "DESC"]]
             });
+            console.log("POSTS", posts);
             return posts;
           } catch (error) {
             console.log(error);
