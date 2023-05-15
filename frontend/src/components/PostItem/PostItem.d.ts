@@ -14,7 +14,10 @@ export type Post = {
   user: PostUserData
 };
 
-
+export type Posts = {
+  [x: string]: Posts | null;
+  posts: Post[]
+}
 
 export type PostItemProps = {
   post?: Post | undefined
