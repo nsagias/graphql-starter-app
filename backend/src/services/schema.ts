@@ -1,3 +1,4 @@
+// import schema from "./schemas";
 // const typeDefinitions = `
 //   type Post {
 //     id: Int
@@ -36,44 +37,44 @@
 //   }
 // `;
 
-const typeDefinitions = `
-  type Post {
-    id: Int
-    text: String
-    user: User
-  }
+// const typeDefinitions = `
+//   type Post {
+//     id: Int
+//     text: String
+//     user: User
+//   }
 
-  type User {
-    avatar: String
-    username: String
-  }
+//   type User {
+//     avatar: String
+//     username: String
+//   }
 
-  type RootQuery {
-    posts: [Post]
-  }
+//   type RootQuery {
+//     posts: [Post]
+//   }
 
-  input PostInput {
-    text: String!
-  }
+//   input PostInput {
+//     text: String!
+//   }
 
-  input UserInput {
-    username: String!
-    avatar: String!
-  }
+//   input UserInput {
+//     username: String!
+//     avatar: String!
+//   }
 
-  type RootMutation {
-    addPost (
-      post: PostInput!
-    ): Post
-  }
+//   type RootMutation {
+//     addPost (
+//       post: PostInput!
+//     ): Post
+//   }
 
-  schema {
-    query: RootQuery
-    mutation: RootMutation
-  }
-`;
-
-
+//   schema {
+//     query: RootQuery
+//     mutation: RootMutation
+//   }
+// `;
 
 
-export default [typeDefinitions];
+
+
+// export default [typeDefinitions];

@@ -10,9 +10,9 @@ import helmet from "helmet";
 import compress from "compression";
 import path from "path";
 import resolvers from "./services/resolvers";
-import typeDefs from "./services/schema"
 import db from "./database";
 import { initModels } from "../models";
+import schema from "./services/schemas";
 
 const root = path.join(__dirname, "../../../");
 
@@ -38,7 +38,7 @@ const startServer = async () => {
   // Create Apollo Servier
   const server = await new ApolloServer<MyContext>({
     schema: makeExecutableSchema({
-      typeDefs,
+      typeDefs: schema,
       resolvers
     }),
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -46,7 +46,6 @@ const startServer = async () => {
 
   await server.start();
  
-
 
   //  Apollo endpoint
   app.use(
