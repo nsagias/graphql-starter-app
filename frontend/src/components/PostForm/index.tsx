@@ -2,7 +2,6 @@ import { useState } from "react";
 import PostFormTextArea from "../PostFormTextArea";
 import { PostFormProps } from "./PostForm";
 import { gql, useMutation } from "@apollo/client";
-import { Post, Posts } from "../PostItem/PostItem";
 
 const ADD_POST = gql(/* GraphQL */`
   mutation  addPost($post: PostInput!) {
