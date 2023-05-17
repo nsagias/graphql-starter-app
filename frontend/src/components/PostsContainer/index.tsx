@@ -6,47 +6,6 @@ import PostItemList from "../PostItemList";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import "./PostsContainer.css";
 
-const initialPosts: Post[] = [
-  {
-    id: 1,
-    text: "Lorem ipsum",
-    user: {
-      avatar: "/uploads/avatar1.png",
-      username: "Test User 1"
-    },
-  },
-  {
-    id: 2,
-    text: "Lorem ipsum",
-    user: {
-      avatar: "/uploads/avatar2.png",
-      username: "Test User 2"
-    }
-  },
-];
-
-// const GET_POSTS = gql`{
-//   posts {
-//     id
-//     text
-//     user {
-//       avatar
-//       username
-//     }
-//   }
-// }`;
-// const ADD_POST = gql`
-// mutation  addPost($post: PostInput!) {
-//   addPost(post: $post) {
-//     id
-//     text
-//     user {
-//       username
-//       avatar
-//     }
-//   }
-// }
-// `;
 
 const ADD_POST = gql(/* GraphQL */`
   mutation  addPost($post: PostInput!) {
